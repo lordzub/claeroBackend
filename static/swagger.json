@@ -1,0 +1,108 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "The Blockchain Explorer",
+    "version": "1.0.0",
+    "title": "The Blockchain explorer",
+    "contact": {
+      "email": "marco.costajohn@gmail.com"
+    },
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Get Tokens",
+      "description": "The request returns all the tokens and the amounts that have ever existed in a wallet "
+    }
+  ],
+  "paths": {
+    "/getTokens/{address}": {
+      "get": {
+        "parameters": [
+        {
+          "name": "address",
+          "in": "path",
+          "required": true,
+          "description": "Wallet address we are looking at",
+          "type": "string"
+        }
+      ],
+        "tags": [
+          "Get Tokens"
+        ],
+        "summary": "The request returns all the tokens and the amounts that have ever existed in a wallet ",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/Get Tokens"
+            }
+          }
+        }
+      }
+    },
+
+    "/getTrxsConcat/{address}/{contract}": {
+      "get": {
+        "parameters": [
+        {
+          "name": "address",
+          "in": "path",
+          "required": true,
+          "description": "Wallet address we are looking at",
+          "type": "string"
+        },
+          {
+          "name": "contract",
+          "in": "path",
+          "required": true,
+          "description": "The contract address of given token",
+          "type": "string"
+        }
+      ],
+        "tags": [
+          "Get Token Transactions"
+        ],
+        "summary": "The request returns all the token transactions of a specific wallet ",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/Get Transactions"
+            }
+          }
+        }
+      }
+    }
+
+  },
+
+    "components": {
+    "schemas": {
+      "Get Tokens": {
+        "properties": {
+          "address": {
+            "type": "string"
+          }
+        }
+      },
+      "Get Transactions": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "Token Contract": {
+            "type": "string"
+          }
+        }
+      },
+
+        }
+      }
+    }
+
